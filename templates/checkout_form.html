@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <h2>Review Your Order</h2>
+<form method="POST">
+    {% csrf_token %}
+{% for item in items %}
+    <p>
+        
+            <img src="{{ item.product.image.url }}" width="80" height="80">
+      
+        <br><br>
+        {{ item.product.name }} |
+        Qty: {{ item.quantity }} |
+        ₹{{ item.subtotal }}
+    </p>
+{% endfor %}
+
+<h3>Total: ₹{{ total }}</h3>
+
+
+</form>
+<a href="{% url 'orders' %}">
+   <button> Proceed to Checkout </button>
+</a> 
+</body>
+</html>

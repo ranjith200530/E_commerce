@@ -1,0 +1,40 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <title>Cart  page </title>
+</head>
+<body>
+    <div class="items">
+    {% for i in data %}
+    <div class="item">
+    <img src="{{i.product.image.url}}" height="200" width="200">
+    <p> <b>user name :</b> {{i.user}}</p>
+    <p> <b>product name :</b> {{i.product}}</p>
+    <p> <b>product quantity : </b>{{i.quantity}}</p>
+    <p> <b>product price: </b>{{i.product.price}}</p>
+   <a href="{%  url 'increase_quantity' i.product.id %}"> <button> Increase quantity</button>  </a>
+   <a href="{%  url 'decrease_quantity' i.product.id %}"> <button> decrease quantity</button>  </a>
+   <a href="{%  url 'remove' i.product.id %}"> <button>Remove item</button>  </a>
+   </div>
+
+  
+   
+    
+    {% endfor %}
+    
+</div>
+<a href="{% url 'checkout_form' %}"> Checkout</a>
+
+ <a  class="total"  href="{% url 'total' %}"> total</a>
+    {% if total %}
+   <p> Total : &#8377 {{total}} </p>
+   {% endif %}
+
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.item{
+padding: 20px;
+  height: 400px;
+  width: 50vw;  
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  margin: 20px;
+}
+.items{
+    gap: 30px;
+}
+
+.total{
+    position: relative;
+    left: 40px;
+    top: -5px;
+}

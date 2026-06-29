@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin page </title>
+</head>
+<body>
+    {% if messages %}
+    {% for message in messages %}
+        <h1 style="color:red">{{ message }}</h1>
+    {% endfor %}
+{% endif %}
+<h1> Admin page</h1>
+<h> Manage categories</h>
+<br><br>
+<a href="{% url 'add_category' %}"> Add Category</a>
+<br>
+<br>
+
+<br><br>
+<a href="{% url 'read' %}"> Read </a>
+
+
+{% if data %}
+{% for i in data %}
+<p> Category : {{i}}     <a href="{% url  'edit' i.id %}"> Edit </a> | <a href="{% url  'delete' i.id %}"> delete </a></p>
+
+{% endfor %}
+{% endif %}
+</body>
+</html>

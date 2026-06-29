@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Order Successful 🎉</h2>
+
+<h3>Customer Details</h3>
+<p>{{ order.name }}</p>
+<p>{{ order.phone }}</p>
+<p>{{ order.city }}</p>
+<p>{{ order.address }}</p>
+<p>{{ order.pincode }}</p>
+
+<hr>
+
+<h3>Ordered Products</h3>
+
+{% for item in items %}
+    <p>
+        {{ item.product.product_name }} |
+        Qty: {{ item.quantity }} |
+        ₹{{ item.product.price }} |
+        Total: ₹{{ item.product.price|floatformat:2 }}
+
+    </p>
+    
+{% endfor %}
+<h4> Status : {{order.status}}</h4>
+</body>
+</html>

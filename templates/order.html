@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>order form</title>
+</head>
+<body>
+    <h1> Order form </h1>
+    <form method="POST" >
+        {% csrf_token %}
+    Name: <input type="text" name="name" placeholder="Enter your Name ">
+    <br><br>
+    phone: <input type="text" name="phone" placeholder="Enter your phone  no ">
+    <br><br>
+    address: <textarea name="address"> </textarea>
+    <br><br>
+    
+    city: <input type="text" name="city" placeholder="Enter your city ">
+     <br><br>
+    pin code :<input type="text" name="pincode" placeholder="Enter yout pin code">
+     <br><br>
+ <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <h1>E- commerece Home page</h1>
+
+    <h4> Categories </h4>
+    <a href="{% url 'category' 'Electronics' %}"><button> Electronics </button> </a>
+    <a href="{% url 'category' 'Groceries' %}"><button> Groceries </button> </a>
+    <a href="{% url 'category' 'Bag' %}"><button> Bags </button> </a>
+     <a href="{% url 'category' 'car' %}"><button> car </button> </a>
+   
+   <form method="GET" action="{% url 'search' %}">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Search products"
+    >
+
+    <button type="submit">
+        Search
+    </button>
+
+</form>
+
+
+
+     <div class="product_section">
+    
+    {% for product in data %}
+        <div class="product_item">
+            
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+              <p> Name of product : <a href="{% url 'product' product.id %}"> {{product.product_name}} </a></p>
+              <p> Price of product : {{ product.price }}</p>
+
+        </div>
+    {% endfor %}
+
+</div>
+  <a  style='position: absolute; right: 20px; top:30px;' href="{% url 'cart_display' %}"> <button> cart </button>  </a>
+   <a  style='position: absolute; right: 10px; top:10px;' href="{% url 'logout' %}"> <button> logout </button>  </a>
+</body>
+</html>

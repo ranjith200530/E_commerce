@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page </title>
+</head>
+<body>
+    <h1> Login page </h1>
+    <form method="post" action="">
+         {% csrf_token %}
+         Username:<input type="text" name="username" placeholder="Enter username ">
+         <br>
+         <br>
+         Password:<input type="password" name="password" placeholder="Enter password ">
+         <button type="submit"> Login</button>
+         
+    </form>
+    <P> if new user create an account </P>
+    <a href="{% url 'register' %}"> <button> create account </button> </a>
+</body>
+</html>
