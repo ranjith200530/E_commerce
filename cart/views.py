@@ -183,6 +183,8 @@ def checkout_review(request):
 #         return redirect("order_success", order_id=order_obj.id)
 #     return redirect("orders")
     
+    
+    
 def order_success(request, order_id):
     order_obj = models.order.objects.get(id=order_id)
     # items = order_obj.items.all()
@@ -197,12 +199,35 @@ def order_success(request, order_id):
     
     
     
+    
 def admin_page(req):
      if req.user.is_superuser:
          data=models.Category.objects.all()
          return render(req,"adminpage.html",{"data":data})
      return redirect("home")
 
+
+def admin_orders(req):
+    items = models.OrderItem.objects.all()
+
+    return render(
+        req,
+        "admin_orders.html",
+        {"items": items}
+    )
+
+def update_status(req, id):
+    if req.method == "POST":
+
+        order = models.order.objects.get(id=id)
+
+        new_status = req.POST.get("status")
+
+        order.status = new_status
+
+        order.save()
+
+    return redirect("admin_page")
 
 def read(req):
     data=models.Category.objects.all()
@@ -236,3 +261,25 @@ def add_categeory(req):
     
     
     
+def order_page(req):
+    orders = models.order.objects.filter(name=req.user)
+
+    items = []
+
+    for order in orders:
+        order_items = models.OrderItem.objects.filter(order=order)
+
+        for item in order_items:
+            items.append(item)
+
+    return render(req, "orderpage.html", {"items": items})
+    
+# def order_page(req):
+#     # items=models.Cart.objects.filter(user=req.user)
+#     data=models.order.objects.filter(name=req.user.username)
+#     items=[]
+#     for i in items:
+#         data.append(models.OrderItem.objects.filter(order_id=i.id))
+   
+    
+#     return render(req,"orderpage.html",{"items":items})

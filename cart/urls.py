@@ -21,6 +21,13 @@ urlpatterns = [
     path('read/',views.read,name="read"),
     path('delete/<int:id>/',views.delete,name="delete"),
     path('edit/<int:id>',views.edit,name="edit"),
+    path('order_page/',views.order_page,name="order_page"),
+    path('admin_order/',views.admin_orders,name="adminorders"),
+    path(
+    "update-status/<int:id>/",
+    views.update_status,
+    name="update_status"
+)
    
 ]
 if settings.DEBUG:

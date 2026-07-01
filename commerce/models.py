@@ -28,12 +28,21 @@ class Cart(models.Model):
     
     
 class order(models.Model):
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('confirmed', 'Confirmed'),
+        ('shipped', 'Shipped'),
+        ('out_for_delivery', 'Out for Delivery'),
+        ('delivered', 'Delivered'),
+        ('cancelled', 'Cancelled'),
+    ]
     name=models.CharField(max_length=100)
     phone=models.CharField(max_length=10)
     city=models.CharField()
     address =models.TextField()
     pincode= models.CharField(max_length=10)
-    status = models.CharField(max_length=20, default="Pending")
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    # status = models.CharField(max_length=20, default="Pending")
     
     def __str__(self):
         return self.name
